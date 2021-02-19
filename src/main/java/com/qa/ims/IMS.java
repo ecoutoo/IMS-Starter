@@ -38,6 +38,9 @@ public class IMS {
 			domainAction(domain);
 
 		} while (domain != Domain.STOP);
+		
+		//Close all connections
+		//Close scanner, connection and exit system
 	}
 
 	private void domainAction(Domain domain) {
