@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.qa.ims.controller.*;
 import com.qa.ims.persistence.dao.CustomerDAO;
 import com.qa.ims.persistence.dao.ItemDAO;
+import com.qa.ims.persistence.dao.OrderDAO;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.utils.DBUtils;
 import com.qa.ims.utils.Utils;
@@ -16,6 +17,7 @@ public class IMS {
 
 	private final CustomerController customers;
 	private final ItemController items;
+	private final OrderController orders;
 	private final Utils utils;
 
 	public IMS() {
@@ -26,6 +28,9 @@ public class IMS {
 		
 		final ItemDAO itemDAO = new ItemDAO();
 		this.items = new ItemController(itemDAO, utils);
+		
+		final OrderDAO orderDAO = new OrderDAO();
+		this.orders = new OrderController(orderDAO, utils);
 	}
 
 	public void imsSystem() {
@@ -60,6 +65,7 @@ public class IMS {
 				active = this.items;
 				break;
 			case ORDER:
+				active = this.orders;
 				break;
 			case STOP:
 				return;
@@ -83,7 +89,7 @@ public class IMS {
 	public void doAction(CrudController<?> crudController, Action action) {
 		switch (action) {
 		case CREATE:
-			crudController.create();
+			crudController.create();		
 			break;
 		case READ:
 			crudController.readAll();
