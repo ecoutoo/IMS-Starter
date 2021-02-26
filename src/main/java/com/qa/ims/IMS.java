@@ -34,9 +34,23 @@ public class IMS {
 	}
 
 	public void imsSystem() {
+		String answer = null;
+		
+		DBUtils dbUtils = new DBUtils();
+		
 		LOGGER.info("Welcome to the Inventory Management System!");
 		DBUtils.connect();
-
+		LOGGER.info("Would you like to load the default database schema and data? (Recommeneded)");
+		LOGGER.info("YES");
+		LOGGER.info("NO");
+		answer = utils.getString();
+		if (answer.toUpperCase().equals("YES")) {
+			LOGGER.info("Schema and data loaded!");
+			dbUtils.executeSQLFile("src/main/resources/sql-schema.sql");
+			dbUtils.executeSQLFile("src/main/resources/sql-data.sql");
+			//DBUtils.getInstance().init("src/main/resources/sql-schema.sql", "src/main/resources/sql-data.sql");
+		}		
+		
 		Domain domain = null;
 		do {
 			LOGGER.info("Which entity would you like to use?");
@@ -47,9 +61,6 @@ public class IMS {
 			domainAction(domain);
 
 		} while (domain != Domain.STOP);
-		
-		//Close all connections
-		//Close scanner, connection and exit system
 	}
 
 	private void domainAction(Domain domain) {

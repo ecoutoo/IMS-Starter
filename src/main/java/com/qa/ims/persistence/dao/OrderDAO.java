@@ -35,7 +35,7 @@ public class OrderDAO implements Dao<Order>{
 		Long itemId = order.getItemId();
 		Long quantity =	order.getQuantity();
 		//LOGGER.info(resultSet.getString(0)); //Cost table not found?
-		Long ordCost = resultSet.getLong("cost");
+		Double ordCost = resultSet.getDouble("cost");
 		return new Order(ordId, custId, lineId, itemId, quantity, ordCost);
 	}
 	
@@ -76,18 +76,7 @@ public class OrderDAO implements Dao<Order>{
 		return new ArrayList<>();
 	}
 
-	public Order readLatest() {
-		try (Connection connection = DBUtils.getInstance().getConnection();
-				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT * FROM orders ORDER BY ord_id DESC LIMIT 1");) {
-			resultSet.next();
-			return modelFromResultSet(resultSet);
-		} catch (Exception e) {
-			LOGGER.debug(e);
-			LOGGER.error(e.getMessage());
-		}
-		return null;
-	}
+
 	
 	public Order readLatestOrder() {
 		try (Connection connection = DBUtils.getInstance().getConnection();

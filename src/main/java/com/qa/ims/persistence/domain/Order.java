@@ -7,11 +7,7 @@ public class Order {
 	private Long lineId;
 	private Long itemId;
 	private Long quantity;
-	private Long ordCost;
-	
-	public Order() {
-		
-	}
+	private Double ordCost;
 	
 	public Order(Long custId) {
 		this.setCustId(custId);
@@ -21,12 +17,13 @@ public class Order {
 		this.setOrdId(ordId);
 		this.setCustId(custId);
 	}
-
-	public Order(Long custId, Long itemId, Long quantity) {
-		this.setCustId(custId);
+	
+	public Order (Long custId, Long itemId, Long quantity) {
 		this.setItemId(itemId);
+		this.setCustId(custId);
 		this.setQuantity(quantity);
 	}
+	
 	
 	public Order(Long ordId, Long lineId, Long itemId, Long quantity) {
 		this.setOrdId(ordId);
@@ -43,7 +40,7 @@ public class Order {
 		this.setQuantity(quantity);
 	}
 	
-	public Order(Long ordId, Long custId, Long lineId, Long itemId, Long quantity, Long ordCost) {
+	public Order(Long ordId, Long custId, Long lineId, Long itemId, Long quantity, Double ordCost) {
 		this.setOrdId(ordId);
 		this.setCustId(custId);
 		this.setLineId(lineId);
@@ -69,7 +66,7 @@ public class Order {
 	}
 	
 	public Long getLineId() {
-		return ordId;
+		return lineId;
 	}
 
 	public void setLineId(Long lineId) {
@@ -92,11 +89,11 @@ public class Order {
 		this.quantity = quantity;
 	}
 	
-	public Long getOrdCost() {
-		return quantity;
+	public Double getOrdCost() {
+		return ordCost;
 	}
 
-	public void setOrdCost(Long ordCost) {
+	public void setOrdCost(Double ordCost) {
 		this.ordCost = ordCost;
 	}
 

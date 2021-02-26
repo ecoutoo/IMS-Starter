@@ -84,7 +84,7 @@ public class DBUtils {
 		instance = new DBUtils(properties);
 		return instance;
 	}
-
+	
 	public static DBUtils getInstance() {
 		if (instance == null) {
 			instance = new DBUtils();
