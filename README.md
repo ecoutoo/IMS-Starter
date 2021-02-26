@@ -23,6 +23,8 @@ MySQL 8.0 (https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html)
 
 Java IDE - Eclipse (https://www.eclipse.org/downloads/packages/installer) - Or any other java IDE you prefer
 
+Package dependencies can be found in the "pom.xml" file
+
 ### Installing
 
 Step 1: Clone to local machine
@@ -37,10 +39,22 @@ The automated tests run when the program is being packaged by maven, if you wish
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+This is an example Unit Test from the class CustomerControllerTest. It tests the class CustomerController. Here a Customer object is made, when prompted for Strings the test returns F_NAME and L_NAME, which are the values in our Customer object. When prompted by the dao class to call dao.create() the test returns the previously created Custoemr object. Mockito then compares if the objects are the same and how many times the input methods and the create methods were called.
 
 ```
-Give an example
+	@Test
+	public void testCreate() {
+		final String F_NAME = "barry", L_NAME = "scott";
+		final Customer created = new Customer(F_NAME, L_NAME);
+
+		Mockito.when(utils.getString()).thenReturn(F_NAME, L_NAME);
+		Mockito.when(dao.create(created)).thenReturn(created);
+
+		assertEquals(created, controller.create());
+
+		Mockito.verify(utils, Mockito.times(2)).getString();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
+	}
 ```
 
 ## Built With
