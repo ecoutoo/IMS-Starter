@@ -1,4 +1,4 @@
-Coverage: 34%
+Coverage: 80%
 # Project Title
 
 One Paragraph of project description goes here
@@ -84,6 +84,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thanks to "Hotel Pools & oDDling - Parrallel" for being a nice track to code along to.
