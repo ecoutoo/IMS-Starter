@@ -1,68 +1,61 @@
-Coverage: 34%
+Coverage: 80%
 # Project Title
 
-One Paragraph of project description goes here
+IMS-Starter is an Inventory Management System with java buisness code connecting a console front end to a MySQL backend. The system deals with Items, Customers and their Orders. A four table database is used, with the tables: (customers, items ,orders and orderlines). CRUD functionality is available for Customers, Items and Orders. Orders also has extra features which are "ADDING/DELETING" items and "calculatingCost" of an Order. 
+
+Extra information can be found in the "documentation" folder which houses design graphs and a presentation file.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+To run the program you need to clone it to your local machine. Then navigate to the directory "IMS-Starter\target" and open up a terminal inside that directory. Make sure you have Java and MySQL installed (see Prerequisites). To run the program type "java -jar ims-0.0.1-jar-with-dependencies" inside the console.
+
+If you wish to do further devlopment and testing you will need to compile the build the project using maven once changes have been made. This can be done by navigating to "IMS-Starter" opening the console and running "mvn clean package". Your new built program will now showup in the "IMS-Starter\target" for you to run as previously described. 
+
+For more indepth detail see "Installing"
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Versions listed are the versions known to work, other versions of these prerequisites might work but are not guaranteeded to do so.
 
-```
-Give examples
-```
+Java 1.8-1.14 (https://www.java.com/en/download/help/download_options.html)
+
+MySQL 8.0 (https://dev.mysql.com/doc/refman/8.0/en/windows-installation.html)
+
+Java IDE - Eclipse (https://www.eclipse.org/downloads/packages/installer) - Or any other java IDE you prefer
+
+Package dependencies can be found in the "pom.xml" file
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
+Step 1: Clone to local machine
 
-Say what the step will be
+Step 2: browse to "IMS-Starter\target" directory
 
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Step 2: Type "java -jar ims-0.0.1-jar-with-dependencies" to run the program
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+The automated tests run when the program is being packaged by maven, if you wish to run them in Eclipse on your package explorer navigate to "ims" then right click "src/test/java" and select coverage as JUnit test. This will run the automated testes inside the IDE and highlight tested/untested code and report back an test successes/errors/failures.
 
 ### Unit Tests 
 
-Explain what these tests test, why and how to run them
+This is an example Unit Test from the class CustomerControllerTest. It tests the class CustomerController. Here a Customer object is made, when prompted for Strings the test returns F_NAME and L_NAME, which are the values in our Customer object. When prompted by the dao class to call dao.create() the test returns the previously created Custoemr object. Mockito then compares if the objects are the same and how many times the input methods and the create methods were called.
 
 ```
-Give an example
+	@Test
+	public void testCreate() {
+		final String F_NAME = "barry", L_NAME = "scott";
+		final Customer created = new Customer(F_NAME, L_NAME);
+
+		Mockito.when(utils.getString()).thenReturn(F_NAME, L_NAME);
+		Mockito.when(dao.create(created)).thenReturn(created);
+
+		assertEquals(created, controller.create());
+
+		Mockito.verify(utils, Mockito.times(2)).getString();
+		Mockito.verify(dao, Mockito.times(1)).create(created);
+	}
 ```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -74,6 +67,7 @@ We use [SemVer](http://semver.org/) for versioning.
 
 ## Authors
 
+* **Vicente Conte Couto** [vicentecontecouto](https://github.com/ecoutoo)
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
 
 ## License
@@ -84,6 +78,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thanks to "Hotel Pools & oDDling - Parrallel" for being a nice track to code along to.
