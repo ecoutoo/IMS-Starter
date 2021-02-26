@@ -1,6 +1,7 @@
 package com.qa.ims.utils;
 
 import java.io.BufferedReader;
+//import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
 import java.sql.Connection;
@@ -51,6 +52,11 @@ public class DBUtils {
 
 	public int executeSQLFile(String file) {
 		int modified = 0;
+		//File f = new File(file);
+		//LOGGER.info(f.exists()); //All used in the case fileNotFoundException
+		//LOGGER.info(f.canRead());
+		//LOGGER.info(f.isDirectory());
+		//LOGGER.info(new File(".").getAbsolutePath());
 		try (Connection connection = this.getConnection();
 				BufferedReader br = new BufferedReader(new FileReader(file));) {
 			String fileAsString = br.lines().reduce((acc, next) -> acc + next).orElse("");

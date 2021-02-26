@@ -1,14 +1,4 @@
-INSERT INTO customers(first_name, surname) VALUES ("jordan", "harrison");
-INSERT INTO customers(first_name, surname) VALUES("vic", "contecouto");
-INSERT INTO customers(first_name, surname) VALUES("george", "hampton");
-INSERT INTO items(item_name, item_price) VALUES("cola", 1.50);
-INSERT INTO items(item_name, item_price) VALUES("fanta", 1.99);
-INSERT INTO items(item_name, item_price) VALUES("drpepper", 1.89);
-INSERT INTO orders(cust_id) VALUES(1);
-INSERT INTO orderlines(ord_id, item_id, quantity) VALUES(1, 1, 2);
-INSERT INTO orderlines(ord_id, item_id, quantity) VALUES(1, 2, 1);
-INSERT INTO orders(cust_id) VALUES(1);
-INSERT INTO orderlines(ord_id, item_id, quantity) VALUES(2, 1, 10);
-INSERT INTO orderlines(ord_id, item_id, quantity) VALUES(1, 3, 5);
-INSERT INTO orders(cust_id) VALUES(2);
-INSERT INTO orderlines(ord_id, item_id, quantity) VALUES(3, 1, 2);
+INSERT INTO `customers`(`first_name`, `surname`) VALUES ('Adil', 'Benriltom');
+INSERT INTO `items`(`item_name`, `item_price`) VALUES('cola', 1.50);
+INSERT INTO `orders`(`cust_id`) VALUES(1);
+INSERT INTO `orderlines`(`ord_id`, `item_id`, `quantity`) VALUES(1, 1, 2);

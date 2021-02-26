@@ -1,4 +1,4 @@
-DROP SCHEMA IF EXISTS ims;
+drop schema ims;
 
 CREATE SCHEMA IF NOT EXISTS `ims`;
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `ims`.`orders` (
     `ord_id` INT(11) NOT NULL AUTO_INCREMENT,
     `cust_id` INT(11) NOT NULL,
     PRIMARY KEY (`ord_id`),
-    FOREIGN KEY (`cust_id`) REFERENCES customers(`cust_id`)
+    FOREIGN KEY (`cust_id`) REFERENCES customers(`cust_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `ims`.`orderlines` (
@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS `ims`.`orderlines` (
     `item_id` INT(11) NOT NULL,
     `quantity` INT(11) NOT NULL,
     PRIMARY KEY (`line_id`),
-    FOREIGN KEY (`ord_id`) REFERENCES orders(`ord_id`),
-    FOREIGN KEY (`item_id`) REFERENCES items(`item_id`)
+    FOREIGN KEY (`ord_id`) REFERENCES orders(`ord_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (`item_id`) REFERENCES items(`item_id`) ON DELETE CASCADE ON UPDATE CASCADE
 );
